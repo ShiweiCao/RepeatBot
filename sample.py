@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import random
+import botfunction
 
 def onQQMessage(bot, contact, member, content):
     if content == '--hello':
@@ -35,5 +36,8 @@ def onQQMessage(bot, contact, member, content):
         else:
             ran = random.random()
             if ran < 0.1:
-                if content != '' and content != '/表情':
-                    bot.SendTo(contact, content)
+                if ran<0.03:
+                    bot.SendTo(contact, content + "还行")
+                else:
+                    if content != '' and content != '/表情':
+                        bot.SendTo(contact, content)
