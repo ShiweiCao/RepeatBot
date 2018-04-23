@@ -17,6 +17,7 @@ def onQQMessage(bot, contact, member, content):
         return
 
     if bot.isMe(contact, member):
+	    time.sleep(0.1)
         return
     else:
         if content == '?单抽':
@@ -36,24 +37,26 @@ def onQQMessage(bot, contact, member, content):
             else:
                 bot.SendTo(contact, "没出货，懒得写了，反正没出五星从者")
         elif content.startswith("水表?"):
-	        user = content[3:]
-	        (bts, wr, pr) = wows.getWOWS(user)
+            user = content[3:]
+            (bts, wr, pr) = wows.getWOWS(user)
 
-	        if bts == -1:
+            if bts == -1:
+                bot.SendTo(contact, "网络错误")
+                return
+            elif bts == -2:
                 bot.SendTo(contact, "查不到")
                 return
 
             if wr[0] == '4':
                 bot.SendTo(contact, "是菜鸡")
-
             
             bot.SendTo(contact, "场次 " + bts + ", 胜率 " + wr + ", 评级 " + pr)
-		        
+
         else:
             ran = random.random()
-            if ran < 0.1:
+            if ran < 0.1 and !'/表情' in content:
                 if ran<0.03:
                     bot.SendTo(contact, content + "还行")
                 else:
-                    if content != '' and content != '/表情':
+                    if content != '':
                         bot.SendTo(contact, content)
