@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import random
+import wows
+import time
 
 def onQQMessage(bot, contact, member, content):
     if content == '--hello':
@@ -32,6 +34,20 @@ def onQQMessage(bot, contact, member, content):
                 bot.SendTo(contact, "抽到五星从者，然而并不是UP")
             else:
                 bot.SendTo(contact, "没出货，懒得写了，反正没出五星从者")
+        elif content.startswith("水表?"):
+	        user = content[3:]
+	        (bts, wr, pr) = wows.getWOWS(user)
+
+	        if bts == -1:
+                bot.SendTo(contact, "查不到")
+                return
+
+            if wr[0] == '4':
+                bot.SendTo(contact, "是菜鸡")
+
+            
+            bot.SendTo(contact, "场次 " + bts + ", 胜率 " + wr + ", 评级 " + pr)
+		        
         else:
             ran = random.random()
             if ran < 0.1:
