@@ -14,6 +14,7 @@ def onQQMessage(bot, contact, member, content):
 
     if content == 'news':
         bot.SendTo(contact, news())
+        return
         
     if '@ME' in content:
         bot.SendTo(contact, "别喊我，不复读都是因为你脸黑")
