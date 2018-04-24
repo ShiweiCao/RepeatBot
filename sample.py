@@ -36,7 +36,7 @@ def onQQMessage(bot, contact, member, content):
                 bot.SendTo(contact, "抽到五星从者，然而并不是UP")
             else:
                 bot.SendTo(contact, "没出货，懒得写了，反正没出五星从者")
-        elif content.startswith("水表?"):
+        elif content.startswith("水表?") or contact.startswith("水表？"):
             user = content[3:]
             (bts, wr, pr) = wows.getWOWS(user)
 

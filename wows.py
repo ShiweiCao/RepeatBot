@@ -1,5 +1,6 @@
 import json
 import urllib.request
+from math import log
 
 def getWOWS(user):
     try:
@@ -22,10 +23,13 @@ def getWOWS(user):
         wins = int(st['wins'])
 
         bts = int(st['battles'])
+        dmg = int(st['damage_dealt']) / bts
         wr = round(float(wins) / bts, 4)
-        pr = int(int(st['xp']) / bts)
+        xp = int(int(st['xp']) / bts)
 
-        return (bts, wr, pr)
+        pr = ((wr - 0.5)**1.5 * 1000 + xp / 50 + dmg / 50 + log(bts) * 10) * 1.1
+
+        return (bts, wr, int(pr))
 
     except:
         print('Parse Error')
@@ -33,6 +37,10 @@ def getWOWS(user):
 
 def main():
     print(getWOWS('lkytal'))
+    print(getWOWS('caoshiwei'))
+    print(getWOWS('_sunYj'))
+    print(getWOWS('September0616'))
+    print(getWOWS('Ren_Amamiya'))
 
 if __name__ == '__main__':
     main()
