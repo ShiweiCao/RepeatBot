@@ -23,40 +23,43 @@ def onQQMessage(bot, contact, member, content):
     if bot.isMe(contact, member):
         time.sleep(0.1)
         return
+    
+    if content.endswith('还行')  and not content == '还行':
+        learn(content)
+
+        if random.random() < 0.2 and not '/表情' in content:
+            bot.SendTo(contact, content)
+            return
+
+    if content == '?单抽':
+        bot.SendTo(contact, drawcard(0))
+    elif content == '?十连':
+        bot.SendTo(contact, drawcard(1))
+
+    elif content.startswith("水表?") or content.startswith("水表？"):
+        user = content[3:]
+        (bts, wr, pr) = wows.getWOWS(user)
+
+        if bts == -1:
+            bot.SendTo(contact, "网络错误")
+            return
+        elif bts == -2:
+            bot.SendTo(contact, "查不到")
+            return
+
+        # if wr <= 0.47:
+        #     bot.SendTo(contact, "是菜鸡")
+
+        wr = format(wr,'.2%')
+
+        bot.SendTo(contact, "场次 " + str(bts) +
+                   ", 胜率 " + str(wr) + ", 评级 " + str(pr))
+
     else:
-        if content.endswith('还行')  and not content == '还行':
-            learn(content)
-
-
-        if content == '?单抽':
-            bot.SendTo(contact, drawcard(0))
-        elif content == '?十连':
-            bot.SendTo(contact, drawcard(1))
-
-        elif content.startswith("水表?") or content.startswith("水表？"):
-            user = content[3:]
-            (bts, wr, pr) = wows.getWOWS(user)
-
-            if bts == -1:
-                bot.SendTo(contact, "网络错误")
-                return
-            elif bts == -2:
-                bot.SendTo(contact, "查不到")
-                return
-
-            # if wr <= 0.47:
-            #     bot.SendTo(contact, "是菜鸡")
-
-            wr = format(wr,'.2%')
-
-            bot.SendTo(contact, "场次 " + str(bts) +
-                       ", 胜率 " + str(wr) + ", 评级 " + str(pr))
-
-        else:
-            ran = random.random()
-            if ran < 0.05 and not '/表情' in content:
-                if ran < 0.015:
-                    bot.SendTo(contact, content + "还行")
-                else:
-                    if content != '':
-                        bot.SendTo(contact, content)
+        ran = random.random()
+        if ran < 0.05 and not '/表情' in content and not '@' in content:
+            if ran < 0.015:
+                bot.SendTo(contact, content + "还行")
+            else:
+                if content != '':
+                    bot.SendTo(contact, content)
