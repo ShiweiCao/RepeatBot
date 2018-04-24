@@ -11,7 +11,7 @@ def onQQMessage(bot, contact, member, content):
     elif content == '--stop':
         bot.SendTo(contact, 'QQ机器人已关闭')
         bot.Stop()
-    
+
     if '@ME' in content:
         bot.SendTo(contact, "别喊我，不复读都是因为你脸黑")
         return
@@ -47,10 +47,10 @@ def onQQMessage(bot, contact, member, content):
                 bot.SendTo(contact, "查不到")
                 return
 
-            if wr[0] == '4':
+            if wr <= 0.47:
                 bot.SendTo(contact, "是菜鸡")
-            
-            bot.SendTo(contact, "场次 " + bts + ", 胜率 " + wr + ", 评级 " + pr)
+
+            bot.SendTo(contact, "场次 " + str(bts) + ", 胜率 " + str(wr) + ", 评级 " + str(pr))
 
         else:
             ran = random.random()
