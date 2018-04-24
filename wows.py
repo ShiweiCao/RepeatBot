@@ -1,6 +1,5 @@
 import json
 import urllib.request
-from bs4 import BeautifulSoup
 
 def getWOWS(user):
     result = ''
@@ -12,45 +11,25 @@ def getWOWS(user):
 
         id = rst['data'][0]['account_id']
 
-        #url = 'https://api.na.warships.today/api/player/' + str(id) + '/current'
-
-        #response = urllib.request.urlopen(url)
-        #result = response.read()
-        #rst = json.loads(result)
-
-        #s = rst['intervals'][-1]
-
-        #st = s['subResultViews']['pvp']['overall']['player']['value']
-
-        #b = st['statistics']['ShipCalculableStatistics']
-
-        #print('win rate=', b['wins']/b['battles'])
-
-        #print('WTR=', st['ratings']['ShipRatings']['warships_today_rating'])
-
-        url = 'https://na.wows-numbers.com/player/' + str(id) + ',' + user + '/'
+        url = 'https://api.worldofwarships.com/wows/account/info/?application_id=777eb24bbf6737cd08132d5997401bc6&account_id=' + str(id)
         response = urllib.request.urlopen(url, timeout=10)
         result = response.read()
-    except:
-        try:
-            url = 'https://na.wows-numbers.com/player/' + str(id) + ',' + user + '/'
-            response = urllib.request.urlopen(url, timeout=10)
-            result = response.read()
-        except:
-            print('Network Error')
-            return (-1, -1, -1)
+        
+        rst = json.loads(result)
 
-    try:
-        html = BeautifulSoup (result, 'html5lib')
+        st = rst['data'][str(id)]['statistics']['pvp']
 
-        line = html.select('table > tbody > tr')
+        wins = int(st['wins'])
 
-        bts = line[1].select('td > span')[0].get_text().strip()
-        wr = line[2].select('td > span')[0].get_text().split()[0]
-        pr = line[3].select('td > span')[0].get_text(strip=True)
+        
+        bts = int(st['battles'])
+        wr = round(float(wins) / bts, 4)
+        pr = int(int(st['xp']) / bts)
 
         return (bts, wr, pr)
 
     except:
         print('Parse Error')
         return (-2, -1, -1)
+
+#print(getWOWS('lkytal'))
