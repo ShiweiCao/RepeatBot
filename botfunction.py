@@ -2,6 +2,9 @@
 
 import random
 import json
+import requests
+import urllib.request
+from bs4 import BeautifulSoup
 
 # 抽卡
 def drawcard(choice):
@@ -41,4 +44,23 @@ def learn(content):
         
         with open("./.qqbot-tmp/plugins/learn.json","w+") as f:
             json.dump(list(data),f)
+
+# def news():
+#     with open("./.qqbot-tmp/plugins/news.json","r") as fp:
+#         data = fp.read()
+#         data = json.loads(data)
+#         number = data[0]
+#         print(number)
+
+#         response = urllib.request.urlopen('https://worldofwarships.com/')
+#         result = response.read()
+#         html = BeautifulSoup(result,'html5lib')
+
+#         string = "news-" + str(number)
+#         print(string)
+#         res = html.find(id = string)
+#         link = res.contents[1].find('a')
+        
+#         url = "worldofwarships.com" + link.get('href')
+#         return url
 

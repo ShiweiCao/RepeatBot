@@ -12,6 +12,9 @@ def onQQMessage(bot, contact, member, content):
         bot.SendTo(contact, 'QQ机器人已关闭')
         bot.Stop()
 
+    if content == 'news':
+        bot.SendTo(contact, news())
+        
     if '@ME' in content:
         bot.SendTo(contact, "别喊我，不复读都是因为你脸黑")
         return
@@ -21,8 +24,8 @@ def onQQMessage(bot, contact, member, content):
         return
     else:
         if content.endswith('还行')  and not content == '还行':
-            if learn(content):
-                print("已收录新的数据")
+            learn(content)
+
 
         if content == '?单抽':
             bot.SendTo(contact, drawcard(0))
