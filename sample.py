@@ -5,6 +5,7 @@ import wows
 import time
 import botfunction
 
+
 def onQQMessage(bot, contact, member, content):
     if content == '--hello':
         bot.SendTo(contact, '你好，我是QQ机器人')
@@ -22,17 +23,17 @@ def onQQMessage(bot, contact, member, content):
     else:
         if content == '?单抽':
             ran = random.random()
-            if ran<0.007:
+            if ran < 0.007:
                 bot.SendTo(contact, "恭喜抽到UP五星从者")
-            elif ran<0.01:
+            elif ran < 0.01:
                 bot.SendTo(contact, "抽到五星从者，然而并不是UP")
             else:
                 bot.SendTo(contact, "没出货，懒得写了，反正不是五星从者")
         elif content == '?十连':
             ran = random.random()
-            if ran<0.068:
+            if ran < 0.068:
                 bot.SendTo(contact, "恭喜抽到UP五星从者")
-            elif ran<0.096:
+            elif ran < 0.096:
                 bot.SendTo(contact, "抽到五星从者，然而并不是UP")
             else:
                 bot.SendTo(contact, "没出货，懒得写了，反正没出五星从者")
@@ -50,12 +51,13 @@ def onQQMessage(bot, contact, member, content):
             if wr <= 0.47:
                 bot.SendTo(contact, "是菜鸡")
 
-            bot.SendTo(contact, "场次 " + str(bts) + ", 胜率 " + str(wr) + ", 评级 " + str(pr))
+            bot.SendTo(contact, "场次 " + str(bts) +
+                       ", 胜率 " + str(wr) + ", 评级 " + str(pr))
 
         else:
             ran = random.random()
             if ran < 0.05 and not '/表情' in content:
-                if ran<0.015:
+                if ran < 0.015:
                     bot.SendTo(contact, content + "还行")
                 else:
                     if content != '':

@@ -5,7 +5,7 @@ from math import log
 def getWOWS(user):
     try:
         response = urllib.request.urlopen(
-            'https://api.worldofwarships.com/wows/account/list/?application_id=demo&search=' + user)
+            'https://api.worldofwarships.com/wows/account/list/?application_id=777eb24bbf6737cd08132d5997401bc6&search=' + user)
         result = response.read()
         rst = json.loads(result)
 
@@ -27,7 +27,7 @@ def getWOWS(user):
         wr = round(float(wins) / bts, 4)
         xp = int(int(st['xp']) / bts)
 
-        pr = ((wr - 0.5)**1.5 * 1000 + xp / 50 + dmg / 50 + log(bts) * 10) * 1.1
+        pr = ((wr - 0.5)**1.5 * 1000 + xp / 100 + dmg / 100 + log(bts) * 20) * 1.8
 
         return (bts, wr, int(pr))
 
@@ -39,6 +39,7 @@ def main():
     print(getWOWS('lkytal'))
     print(getWOWS('caoshiwei'))
     print(getWOWS('_sunYj'))
+    print(getWOWS('MI6_007'))
     print(getWOWS('September0616'))
     print(getWOWS('Ren_Amamiya'))
 
