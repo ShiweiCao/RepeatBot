@@ -41,6 +41,7 @@ def main():
     print(getWOWS('_sunYj'))
     print(getWOWS('MI6_007'))
     print(getWOWS('September0616'))
+    print(getWOWS('Dog13ites'))
     print(getWOWS('Ren_Amamiya'))
 
 if __name__ == '__main__':

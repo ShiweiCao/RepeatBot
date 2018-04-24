@@ -23,16 +23,22 @@ def drawcard(choice):
             res +=  "没出货，懒得写了，反正没出五星从者"
     return res
 
+data = set()
+
+try:
+    with open("./.qqbot-tmp/plugins/learn.json","w+") as f:
+        d = f.read()
+        d = json.loads(d)
+        data = set(d)
+except:
+    pass
 
 def learn(content):
-    with open("./.qqbot-tmp/plugins/learn.json","w+") as f:
-        content = content.replace("还行","")
-        content = content.strip()
+    content = content.replace("还行","").strip()
 
-        data = json.loads(f)
-        a = set(data)
-
-        a.add(content)
-
-        json.dump(list(a),f)
+    if not content in data:
+        data.add(content)
+        
+        with open("./.qqbot-tmp/plugins/learn.json","w+") as f:
+            json.dump(list(data),f)
 
