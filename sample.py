@@ -3,8 +3,7 @@
 import random
 import wows
 import time
-import botfunction
-
+from botfunction import *
 
 def onQQMessage(bot, contact, member, content):
     if content == '--hello':
@@ -21,23 +20,16 @@ def onQQMessage(bot, contact, member, content):
         time.sleep(0.1)
         return
     else:
+        if content.endswith('还行')  and not content == '还行':
+            if learn(content):
+                print("已收录新的数据")
+
         if content == '?单抽':
-            ran = random.random()
-            if ran < 0.007:
-                bot.SendTo(contact, "恭喜抽到UP五星从者")
-            elif ran < 0.01:
-                bot.SendTo(contact, "抽到五星从者，然而并不是UP")
-            else:
-                bot.SendTo(contact, "没出货，懒得写了，反正不是五星从者")
+            bot.SendTo(contact, drawcard(0))
         elif content == '?十连':
-            ran = random.random()
-            if ran < 0.068:
-                bot.SendTo(contact, "恭喜抽到UP五星从者")
-            elif ran < 0.096:
-                bot.SendTo(contact, "抽到五星从者，然而并不是UP")
-            else:
-                bot.SendTo(contact, "没出货，懒得写了，反正没出五星从者")
-        elif content.startswith("水表?") or contact.startswith("水表？"):
+            bot.SendTo(contact, drawcard(1))
+
+        elif content.startswith("水表?") or content.startswith("水表？"):
             user = content[3:]
             (bts, wr, pr) = wows.getWOWS(user)
 
@@ -48,8 +40,10 @@ def onQQMessage(bot, contact, member, content):
                 bot.SendTo(contact, "查不到")
                 return
 
-            if wr <= 0.47:
-                bot.SendTo(contact, "是菜鸡")
+            # if wr <= 0.47:
+            #     bot.SendTo(contact, "是菜鸡")
+
+            wr = format(wr,'.2%')
 
             bot.SendTo(contact, "场次 " + str(bts) +
                        ", 胜率 " + str(wr) + ", 评级 " + str(pr))
