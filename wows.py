@@ -2,16 +2,21 @@ import json
 import urllib.request
 from math import log
 
-def getWOWS(user):
+def getWOWS(user, sever):
     try:
+        if sever == "NA":
+            dom = "com"
+        else:
+            dom = sever
+        
         response = urllib.request.urlopen(
-            'https://api.worldofwarships.com/wows/account/list/?application_id=777eb24bbf6737cd08132d5997401bc6&search=' + user)
+            'https://api.worldofwarships.' + dom + '/wows/account/list/?application_id=777eb24bbf6737cd08132d5997401bc6&search=' + user)
         result = response.read()
         rst = json.loads(result)
 
         id = rst['data'][0]['account_id']
 
-        url = 'https://api.worldofwarships.com/wows/account/info/?application_id=777eb24bbf6737cd08132d5997401bc6&account_id=' + \
+        url = 'https://api.worldofwarships.' + dom + '/wows/account/info/?application_id=777eb24bbf6737cd08132d5997401bc6&account_id=' + \
             str(id)
         response = urllib.request.urlopen(url, timeout=10)
         result = response.read()
@@ -35,14 +40,14 @@ def getWOWS(user):
         print('Parse Error')
         return (-2, -1, -1)
 
-def main():
-    print(getWOWS('lkytal'))
-    print(getWOWS('caoshiwei'))
-    print(getWOWS('_sunYj'))
-    print(getWOWS('MI6_007'))
-    print(getWOWS('September0616'))
-    print(getWOWS('Dog13ites'))
-    print(getWOWS('Ren_Amamiya'))
+# def main():
+#     print(getWOWS('lkytal'))
+#     print(getWOWS('caoshiwei'))
+#     print(getWOWS('_sunYj'))
+#     print(getWOWS('MI6_007'))
+#     print(getWOWS('September0616'))
+#     print(getWOWS('Dog13ites'))
+#     print(getWOWS('Ren_Amamiya'))
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

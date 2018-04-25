@@ -12,8 +12,15 @@ def onQQMessage(bot, contact, member, content):
         bot.SendTo(contact, 'QQ机器人已关闭')
         bot.Stop()
 
-    if content == 'news':
+    if content == '?news':
         bot.SendTo(contact, news())
+        time.sleep(0.1)
+        return
+
+    if content == '?help':
+        string = '''欢迎使用智障复读机器人（兼睿智窝窝屎bot）\n主要功能：\n1.低概率复读群员对话，极低概率自动加上“还行”\n2.窝窝屎水表，请使用命令“水表?username server” 服务器列表["NA","ASIA","RU","EU"],不写或出错默认美服\n3.窝窝屎美服新闻，请使用命令“?news”获取最新的三条新闻'''
+        bot.SendTo(contact, string)
+        time.sleep(0.1)
         return
         
     if '@ME' in content:
@@ -34,8 +41,17 @@ def onQQMessage(bot, contact, member, content):
             bot.SendTo(contact, drawcard(1))
 
         elif content.startswith("水表?") or content.startswith("水表？"):
-            user = content[3:]
-            (bts, wr, pr) = wows.getWOWS(user)
+            string = content[3:]
+            user = string.split(" ")[0]
+            serList = ["NA","ASIA","RU","EU"]
+
+            try:
+                if string.split(" ")[1] in serList:
+                    sever = string.split(" ")[1]
+            except:
+                sever = "NA"
+
+            (bts, wr, pr) = wows.getWOWS(user, sever)
 
             if bts == -1:
                 bot.SendTo(contact, "网络错误")
@@ -44,11 +60,7 @@ def onQQMessage(bot, contact, member, content):
                 bot.SendTo(contact, "查不到")
                 return
 
-            # if wr <= 0.47:
-            #     bot.SendTo(contact, "是菜鸡")
-
             wr = format(wr,'.2%')
-
             bot.SendTo(contact, "场次 " + str(bts) +
                        ", 胜率 " + str(wr) + ", 评级 " + str(pr))
 
