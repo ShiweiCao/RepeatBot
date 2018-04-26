@@ -14,7 +14,7 @@ def onQQMessage(bot, contact, member, content):
         bot.Stop()
 
     # isMe?
-    if bot.isMe(contact, member):
+    if bot.isMe(contact, member) or menber.qq == bot.conf.qq:
         time.sleep(0.1)
         return
 
@@ -79,7 +79,7 @@ def onQQMessage(bot, contact, member, content):
     # Repeat
     ran = random.random()
     if ran < 0.05 and not '/表情' in content and not '@' in content:
-        if ran < 0.015:
+        if ran < 0.015 and not content.endswith('还行'):
             bot.SendTo(contact, content + "还行")
         else:
             if content != '':

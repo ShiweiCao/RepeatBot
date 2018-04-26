@@ -1,8 +1,8 @@
 # QQ智障复读机器人
 
-QQ复读机器人兼战舰世界Bot
+## QQ 复读机器人兼战舰世界 Bot
 
-本程序是在https://github.com/pandolia/qqbot/ 的基础上写出的插件。需要先运行QQbot并登陆账号，将本文件夹内的文件放在plugins文件夹下，运行sample.py运行本插件。
+本程序是在 https://github.com/pandolia/qqbot/ 的基础上写出的插件。需要先运行QQbot并登陆账号，将本文件夹内的文件放在plugins文件夹下，运行sample.py运行本插件。
 
 - 主要功能：
   - 低概率复读群员对话，极低概率自动加上“还行”
@@ -17,7 +17,7 @@ QQ复读机器人兼战舰世界Bot
   - ……
 
 
-美服[MEOW]公会，欢迎巨佬莅临指导，群号682058320，Discord:https://discord.gg/tBNBr28
+美服 [MEOW] 公会，欢迎巨佬莅临指导，群号 682058320，Discord: https://discord.gg/tBNBr28
 
-# 版本更新日志
+## 版本更新日志
 - 2018.4.25 ver 1.0: 初版，实现基本功能

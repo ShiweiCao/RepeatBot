@@ -16,8 +16,8 @@ def getWOWS(user, sever):
 
         id = rst['data'][0]['account_id']
 
-        url = 'https://api.worldofwarships.' + dom + '/wows/account/info/?application_id=777eb24bbf6737cd08132d5997401bc6&account_id=' + \
-            str(id)
+        url = 'https://api.worldofwarships.' + dom + '/wows/account/info/?application_id=777eb24bbf6737cd08132d5997401bc6&account_id=' + str(id)
+        
         response = urllib.request.urlopen(url, timeout=10)
         result = response.read()
 
@@ -40,14 +40,14 @@ def getWOWS(user, sever):
         print('Parse Error')
         return (-2, -1, -1)
 
-# def main():
-#     print(getWOWS('lkytal'))
-#     print(getWOWS('caoshiwei'))
-#     print(getWOWS('_sunYj'))
-#     print(getWOWS('MI6_007'))
-#     print(getWOWS('September0616'))
-#     print(getWOWS('Dog13ites'))
-#     print(getWOWS('Ren_Amamiya'))
+ def main():
+     print(getWOWS('lkytal'))
+     print(getWOWS('caoshiwei'))
+     print(getWOWS('_sunYj'))
+     print(getWOWS('MI6_007'))
+     print(getWOWS('September0616'))
+     print(getWOWS('Dog13ites'))
+     print(getWOWS('Ren_Amamiya'))
 
-# if __name__ == '__main__':
-#     main()
+ if __name__ == '__main__':
+     main()
