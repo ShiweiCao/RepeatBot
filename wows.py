@@ -40,14 +40,14 @@ def getWOWS(user, sever):
         print('Parse Error')
         return (-2, -1, -1)
 
- def main():
-     print(getWOWS('lkytal'))
-     print(getWOWS('caoshiwei'))
-     print(getWOWS('_sunYj'))
-     print(getWOWS('MI6_007'))
-     print(getWOWS('September0616'))
-     print(getWOWS('Dog13ites'))
-     print(getWOWS('Ren_Amamiya'))
+# def main():
+#     print(getWOWS('lkytal'))
+#     print(getWOWS('caoshiwei'))
+#     print(getWOWS('_sunYj'))
+#     print(getWOWS('MI6_007'))
+#     print(getWOWS('September0616'))
+#     print(getWOWS('Dog13ites'))
+#     print(getWOWS('Ren_Amamiya'))
 
- if __name__ == '__main__':
-     main()
+# if __name__ == '__main__':
+#     main()

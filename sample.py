@@ -14,7 +14,7 @@ def onQQMessage(bot, contact, member, content):
         bot.Stop()
 
     # isMe?
-    if bot.isMe(contact, member) or menber.qq == bot.conf.qq:
+    if bot.isMe(contact, member) or (contact.ctype != 'buddy' and member.qq == bot.conf.qq):
         time.sleep(0.1)
         return
 
