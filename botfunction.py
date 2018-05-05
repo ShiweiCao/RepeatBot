@@ -30,7 +30,7 @@ def drawcard(choice):
 data = set()
 
 try:
-    with open("./.qqbot-tmp/plugins/learn.json","w+") as f:
+    with open("./.qqbot-tmp/plugins/learn.json","r") as f:
         d = f.read()
         d = json.loads(d)
         data = set(d)

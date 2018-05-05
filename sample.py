@@ -5,6 +5,9 @@ import wows
 import time
 from botfunction import *
 
+last_repeated = ""
+p = 0.03
+
 def onQQMessage(bot, contact, member, content):
     # bot control
     if content == '--hello':
@@ -22,6 +25,8 @@ def onQQMessage(bot, contact, member, content):
     if '@ME' in content:
         bot.SendTo(contact, "别喊我，不复读都是因为你脸黑")
         return
+    elif '@' in content:
+        return
 
     # News module (NA)
     if content == '?news':
@@ -35,14 +40,6 @@ def onQQMessage(bot, contact, member, content):
         bot.SendTo(contact, string)
         time.sleep(0.1)
         return
-
-    # Machine Learning Module
-    if content.endswith('还行')  and not content == '还行':
-        learn(content)
-        
-        if random.random() < 0.2 and not '/表情' in content:
-            bot.SendTo(contact, content)
-            return
 
     # Draw card module
     if content == '?单抽':
@@ -77,10 +74,23 @@ def onQQMessage(bot, contact, member, content):
                 ", 胜率 " + str(wr) + ", 评级 " + str(pr))
 
     # Repeat
-    ran = random.random()
-    if ran < 0.05 and not '/表情' in content and not '@' in content:
-        if ran < 0.015 and not content.endswith('还行'):
+    if content == last_repeated:
+        pass
+    elif content.endswith('还行')  and not content == '还行':
+        learn(content)
+        
+        if random.random() < 0.2 and not '/表情' in content:
+            last_repeated = content
+            bot.SendTo(contact, content)
+            return
+    elif random.random() < p and not '/表情' in content:
+        p = 0.03
+        
+        if random.random() < 0.2:
+            last_repeated = content + "还行"
             bot.SendTo(contact, content + "还行")
-        else:
-            if content != '':
-                bot.SendTo(contact, content)
+        elif content != '':
+            last_repeated = content
+            bot.SendTo(contact, content)
+    else:
+        p = p / (1.0 - p)
