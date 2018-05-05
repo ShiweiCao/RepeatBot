@@ -38,6 +38,7 @@ except:
     pass
 
 def learn(content):
+	global data
     content = content.replace("还行","").strip()
 
     if not content in data:

@@ -9,6 +9,9 @@ last_repeated = ""
 p = 0.03
 
 def onQQMessage(bot, contact, member, content):
+	global last_repeated
+	global p
+	
     # bot control
     if content == '--hello':
         bot.SendTo(contact, '你好，我是QQ机器人')
@@ -83,7 +86,7 @@ def onQQMessage(bot, contact, member, content):
     # Repeat
     if content == last_repeated:
         pass
-    elif content.endswith('还行')  and not content == '还行':
+    elif content.endswith('还行') and not content == '还行':
         learn(content)
 
         if random.random() < 0.2 and not '/表情' in content:
