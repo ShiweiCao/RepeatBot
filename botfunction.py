@@ -64,3 +64,11 @@ def news():
     string += "worldofwarships.com" + link.get('href')
     return string
 
+def latest_news():
+    response = urllib.request.urlopen('https://worldofwarships.com/')
+    result = response.read()
+    html = BeautifulSoup(result, 'html5lib')
+
+    res = html.find(id = 'news-container')
+    link = res.find('a')
+    url = "worldofwarships.com" + link.get('href')

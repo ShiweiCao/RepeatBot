@@ -28,6 +28,13 @@ def onQQMessage(bot, contact, member, content):
     elif '@' in content:
         return
 
+    # Debug module
+    if content == '?debug':
+        status = "P: " + str(p) + ", last repeated: " + last_repeated
+        bot.SendTo(contact, status)
+        time.sleep(0.1)
+        return
+
     # News module (NA)
     if content == '?news':
         bot.SendTo(contact, news())
@@ -51,7 +58,7 @@ def onQQMessage(bot, contact, member, content):
     # WoWs player data
     if content.startswith("水表?") or content.startswith("水表？"):
         string = content[3:]
-        user = string.split(" ")[0]
+        user = string.split(" ")[0].strip()
         serList = ["NA","ASIA","RU","EU"]
 
         try:
@@ -78,14 +85,14 @@ def onQQMessage(bot, contact, member, content):
         pass
     elif content.endswith('还行')  and not content == '还行':
         learn(content)
-        
+
         if random.random() < 0.2 and not '/表情' in content:
             last_repeated = content
             bot.SendTo(contact, content)
             return
     elif random.random() < p and not '/表情' in content:
         p = 0.03
-        
+
         if random.random() < 0.2:
             last_repeated = content + "还行"
             bot.SendTo(contact, content + "还行")
@@ -93,4 +100,4 @@ def onQQMessage(bot, contact, member, content):
             last_repeated = content
             bot.SendTo(contact, content)
     else:
-        p = p / (1.0 - p)
+        p = min(p / (1.0 - p), 0.5)
