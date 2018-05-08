@@ -9,9 +9,9 @@ last_repeated = ""
 p = 0.03
 
 def onQQMessage(bot, contact, member, content):
-	global last_repeated
-	global p
-	
+    global last_repeated
+    global p
+
     # bot control
     if content == '--hello':
         bot.SendTo(contact, '你好，我是QQ机器人')
