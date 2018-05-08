@@ -4,6 +4,7 @@ import random
 import wows
 import time
 from botfunction import *
+import re
 
 last_repeated = ""
 p = 0.03
@@ -56,6 +57,10 @@ def onQQMessage(bot, contact, member, content):
         bot.SendTo(contact, drawcard(0))
     elif content == '?十连':
         bot.SendTo(contact, drawcard(1))
+
+    # BiliBili url 
+    if re.match('^(av)[1-9]{1,}[0-9]*$', content):
+        bot.SendTo(contact, bili_url(content))
 
 
     # WoWs player data

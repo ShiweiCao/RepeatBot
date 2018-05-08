@@ -73,3 +73,6 @@ def latest_news():
     res = html.find(id = 'news-container')
     link = res.find('a')
     url = "worldofwarships.com" + link.get('href')
+
+def bili_url(content):
+    return "https://www.bilibili.com/video/" + content    
