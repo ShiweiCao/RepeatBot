@@ -1,5 +1,8 @@
 # QQ智障复读机器人
 
+因为SmartQQ停止支持，本项目也将停止更新（其实早就停了）
+~~摸了摸了~~
+
 ## QQ 复读机器人兼战舰世界 Bot
 
 本程序是在 https://github.com/pandolia/qqbot/ 的基础上写出的插件。需要先运行QQbot并登陆账号，将本文件夹内的文件放在plugins文件夹下，运行sample.py运行本插件。
